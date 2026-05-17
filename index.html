@@ -1,722 +1,483 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>星云导航 - 您的互联网起点</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            100: '#e6f7ff',
+                            200: '#bae7ff',
+                            300: '#91d5ff',
+                            400: '#69c0ff',
+                            500: '#40a9ff',
+                            600: '#1890ff',
+                            700: '#096dd9',
+                            800: '#0050b3',
+                            900: '#003a8c',
+                        },
+                        secondary: {
+                            100: '#f0f5ff',
+                            200: '#d6e4ff',
+                            300: '#adc6ff',
+                            400: '#85b8ff',
+                            500: '#597ef7',
+                            600: '#2f54eb',
+                            700: '#1d39c4',
+                            800: '#10239e',
+                            900: '#061178',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
         body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #e6f7ff 25%, #91d5ff 50%, #40a9ff 75%, #1890ff 100%);
+            background-attachment: fixed;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(24, 144, 255, 0.15);
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
+        
+        .nav-item {
             transition: all 0.3s ease;
         }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
+        
+        .nav-item:hover {
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.45);
         }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .category-header {
+            position: relative;
+            overflow: hidden;
         }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        
+        .category-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #40a9ff, #597ef7);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        
+        .category-header:hover::after {
+            transform: translateX(0);
         }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
+        
+        .search-input {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(64, 169, 255, 0.5);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .float-animation-delay {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        .float-animation-delay-2 {
+            animation: float 6s ease-in-out infinite;
+            animation-delay: 4s;
+        }
+        
+        .icon-gradient {
+            background: linear-gradient(135deg, #40a9ff, #2f54eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+<body class="min-h-screen p-4 md:p-8">
+    <!-- 顶部导航栏 -->
+    <header class="glass-card rounded-2xl p-4 mb-8 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-r from-primary-400 to-secondary-500 flex items-center justify-center text-white font-bold text-xl">
+                N
             </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <h1 class="text-xl font-bold text-primary-700">星云导航</h1>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="#" class="text-primary-700 hover:text-primary-500 transition-colors">首页</a>
+            <a href="#" class="text-primary-700 hover:text-primary-500 transition-colors">分类</a>
+            <a href="#" class="text-primary-700 hover:text-primary-500 transition-colors">推荐</a>
+            <a href="#" class="text-primary-700 hover:text-primary-500 transition-colors">关于</a>
+        </nav>
+        <div class="flex items-center space-x-4">
+            <button class="text-primary-700 hover:text-primary-500 transition-colors">
+                <i class="fas fa-moon text-xl"></i>
+            </button>
+            <button class="glass-card px-4 py-2 rounded-xl text-primary-700 hover:bg-white/30 transition-colors">
+                登录
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+    <!-- 搜索区域 -->
+    <div class="glass-card rounded-2xl p-6 mb-8 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-primary-700 mb-6">探索互联网的无限可能</h2>
+        <div class="max-w-2xl mx-auto relative">
+            <input type="text" placeholder="搜索网站、工具或资源..." class="search-input w-full px-6 py-4 rounded-xl text-primary-700 placeholder-primary-400 outline-none transition-all duration-300">
+            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-primary-400 to-secondary-500 text-white px-6 py-2 rounded-xl hover:opacity-90 transition-opacity">
+                <i class="fas fa-search mr-2"></i>搜索
+            </button>
         </div>
-    </section>
+        <div class="flex flex-wrap justify-center gap-2 mt-4">
+            <span class="text-primary-500 text-sm">热门搜索:</span>
+            <a href="#" class="text-primary-700 text-sm hover:text-primary-500 transition-colors">设计工具</a>
+            <a href="#" class="text-primary-700 text-sm hover:text-primary-500 transition-colors">编程资源</a>
+            <a href="#" class="text-primary-700 text-sm hover:text-primary-500 transition-colors">AI工具</a>
+            <a href="#" class="text-primary-700 text-sm hover:text-primary-500 transition-colors">学习平台</a>
+        </div>
+    </div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+    <!-- 分类导航 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- 设计工具 -->
+        <div class="glass-card rounded-2xl p-6 float-animation">
+            <div class="category-header mb-4 pb-2">
+                <h3 class="text-xl font-bold text-primary-700 flex items-center">
+                    <i class="fas fa-palette text-primary-500 mr-3"></i>设计工具
+                </h3>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-pen-nib text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Figma</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-image text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Photoshop</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-vector-square text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Illustrator</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-magic text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Canva</span>
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+        <!-- 编程资源 -->
+        <div class="glass-card rounded-2xl p-6 float-animation-delay">
+            <div class="category-header mb-4 pb-2">
+                <h3 class="text-xl font-bold text-primary-700 flex items-center">
+                    <i class="fas fa-code text-secondary-500 mr-3"></i>编程资源
+                </h3>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fab fa-github text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">GitHub</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fab fa-stack-overflow text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Stack Overflow</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-book text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">MDN</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-terminal text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">CodePen</span>
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+        <!-- AI工具 -->
+        <div class="glass-card rounded-2xl p-6 float-animation-delay-2">
+            <div class="category-header mb-4 pb-2">
+                <h3 class="text-xl font-bold text-primary-700 flex items-center">
+                    <i class="fas fa-robot text-primary-500 mr-3"></i>AI工具
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-comment-dots text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">ChatGPT</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-paint-brush text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Midjourney</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-music text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Suno AI</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-video text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Runway</span>
+                </a>
+            </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
+        <!-- 学习平台 -->
+        <div class="glass-card rounded-2xl p-6 float-animation">
+            <div class="category-header mb-4 pb-2">
+                <h3 class="text-xl font-bold text-primary-700 flex items-center">
+                    <i class="fas fa-graduation-cap text-secondary-500 mr-3"></i>学习平台
+                </h3>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-play-circle text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Coursera</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-university text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">edX</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-chalkboard-teacher text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Udemy</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-laptop-code text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Codecademy</span>
+                </a>
             </div>
         </div>
+
+        <!-- 社交媒体 -->
+        <div class="glass-card rounded-2xl p-6 float-animation-delay">
+            <div class="category-header mb-4 pb-2">
+                <h3 class="text-xl font-bold text-primary-700 flex items-center">
+                    <i class="fas fa-users text-primary-500 mr-3"></i>社交媒体
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fab fa-twitter text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Twitter</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fab fa-instagram text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Instagram</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fab fa-linkedin text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">LinkedIn</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fab fa-discord text-2xl text-primary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Discord</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 生产力工具 -->
+        <div class="glass-card rounded-2xl p-6 float-animation-delay-2">
+            <div class="category-header mb-4 pb-2">
+                <h3 class="text-xl font-bold text-primary-700 flex items-center">
+                    <i class="fas fa-tasks text-secondary-500 mr-3"></i>生产力工具
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-file-alt text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Notion</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-calendar-alt text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Google Calendar</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-project-diagram text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Trello</span>
+                </a>
+                <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                    <i class="fas fa-sticky-note text-2xl text-secondary-500 mb-2"></i>
+                    <span class="text-primary-700 text-sm">Evernote</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 推荐网站 -->
+    <div class="glass-card rounded-2xl p-6 mb-8">
+        <h3 class="text-xl font-bold text-primary-700 mb-6 flex items-center">
+            <i class="fas fa-star text-yellow-400 mr-3"></i>精选推荐
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center text-white font-bold text-xl mb-2">
+                    <i class="fab fa-google"></i>
+                </div>
+                <span class="text-primary-700 text-sm">Google</span>
+            </a>
+            <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-red-500 to-red-700 flex items-center justify-center text-white font-bold text-xl mb-2">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <span class="text-primary-700 text-sm">YouTube</span>
+            </a>
+            <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-xl mb-2">
+                    <i class="fab fa-spotify"></i>
+                </div>
+                <span class="text-primary-700 text-sm">Spotify</span>
+            </a>
+            <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center text-white font-bold text-xl mb-2">
+                    <i class="fab fa-twitch"></i>
+                </div>
+                <span class="text-primary-700 text-sm">Twitch</span>
+            </a>
+            <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center text-white font-bold text-xl mb-2">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <span class="text-primary-700 text-sm">Dropbox</span>
+            </a>
+            <a href="#" class="nav-item glass-card rounded-xl p-4 flex flex-col items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-400 to-pink-600 flex items-center justify-center text-white font-bold text-xl mb-2">
+                    <i class="fab fa-dribbble"></i>
+                </div>
+                <span class="text-primary-700 text-sm">Dribbble</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="glass-card rounded-2xl p-6 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#" class="text-primary-600 hover:text-primary-400 transition-colors">
+                <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-primary-600 hover:text-primary-400 transition-colors">
+                <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="text-primary-600 hover:text-primary-400 transition-colors">
+                <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="#" class="text-primary-600 hover:text-primary-400 transition-colors">
+                <i class="fab fa-discord text-xl"></i>
+            </a>
+        </div>
+        <p class="text-primary-500 text-sm">© 2023 星云导航. 保留所有权利.</p>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+        // 搜索功能
+        const searchInput = document.querySelector('.search-input');
+        const searchButton = document.querySelector('.search-input + button');
+        
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                // 这里可以实现实际的搜索逻辑，例如跳转到搜索结果页面
+                console.log(`搜索: ${query}`);
+                // 示例：显示一个提示
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 glass-card rounded-xl p-4 text-primary-700 z-50';
+                notification.innerHTML = `<i class="fas fa-search mr-2"></i>正在搜索: ${query}`;
+                document.body.appendChild(notification);
+                
+                // 3秒后移除提示
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 500);
+                }, 3000);
+            }
         });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
+        
+        // 按Enter键触发搜索
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+        
+        // 添加页面加载动画
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.glass-card');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+        
+        // 添加暗色模式切换功能
+        const darkModeToggle = document.querySelector('header button:first-of-type');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
             
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.style.background = 'linear-gradient(135deg, #1a202c 0%, #2d3748 25%, #1a202c 50%, #2d3748 75%, #1a202c 100%)';
+                darkModeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
                 
-                const inc = target / speed;
+                // 更新所有文本颜色
+                document.querySelectorAll('.text-primary-700, .text-primary-600, .text-primary-500').forEach(el => {
+                    el.dataset.originalClass = el.className;
+                    el.className = el.className.replace(/text-primary-\d+/, 'text-white');
+                });
                 
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+                // 更新所有图标颜色
+                document.querySelectorAll('.text-primary-500, .text-secondary-500').forEach(el => {
+                    el.dataset.originalClass = el.className;
+                    el.className = el.className.replace(/text-primary-\d+|text-secondary-\d+/, 'text-primary-300');
+                });
+            } else {
+                document.body.style.background = 'linear-gradient(135deg, #ffffff 0%, #e6f7ff 25%, #91d5ff 50%, #40a9ff 75%, #1890ff 100%)';
+                darkModeToggle.innerHTML = '<i class="fas fa-moon text-xl"></i>';
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
+                // 恢复所有文本颜色
+                document.querySelectorAll('[data-original-class]').forEach(el => {
+                    el.className = el.dataset.originalClass;
+                    delete el.dataset.originalClass;
+                });
+            }
         });
     </script>
 </body>
-
 </html>
